@@ -10,7 +10,7 @@ This is an independent analysis of WESAD, not an official implementation or an e
 
 ## The “Neurocognitive integrity” angle
 
-> **Author’s note:** My background in **Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings—not direct measurements of neural activity**.
+> **Author’s note:** My background in **Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings not direct measurements of neural activity**.
 
 ---
 
