@@ -125,7 +125,7 @@ This distinction matters: a participant with 100% accuracy on two accepted windo
 
 Calibration and conformal analyses remain exploratory. Neither high confidence nor empirical coverage establishes guaranteed reliability for a new individual.
 
-## self-Reports: Connecting predictions with experience
+## Self-reports: connecting predictions with experience
 
 Questionnaires remain **outside the classifier-training loop**. The workflow describes self-reports by condition and explores associations with physiological features and OOF model scores.
 
