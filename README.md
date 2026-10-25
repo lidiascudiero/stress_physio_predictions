@@ -190,22 +190,22 @@ Interpretability requires persisted fitted models, fold metadata, and matching O
 
 Raw WESAD data are not distributed with the project archive. Obtain the dataset from its original distribution and follow its terms and acknowledgment requirements. Load pickle/joblib artifacts only from trusted sources.
 
-## Tech Stack & Libraries
+## Tech stack
 
-### Signal Processing & Statistical Analysis
+### Signal Processing and statistical analysis
 
 - **Python, NumPy, Pandas:** signal tables, aggregation, and reproducible analysis.
 - **SciPy:** filtering, peak detection, correlation, and statistical analysis.
 - **PyArrow:** Parquet feature and attribution storage.
 
-### Machine Learning & Interpretation
+### Machine Learning and interpretation
 
 - **Scikit-Learn:** preprocessing pipelines, grouped validation, logistic regression, Random Forest, and MLP.
-- **XGBoost & LightGBM:** exploratory gradient-boosting comparisons.
+- **XGBoost and LightGBM:** exploratory gradient-boosting comparisons.
 - **Joblib:** saved LOSO pipelines.
 - **NumPy-based Shapley sampling:** dependency-independent attribution in the all-experiment interpretation notebook.
 
-### Visualization & Reporting
+### Visualization and reporting
 
 - **Matplotlib & Seaborn:** distributions, model-comparison charts, attribution plots, and 300-dpi exports.
 - **Jupyter:** executable analysis and reports.
@@ -226,7 +226,7 @@ Raw WESAD data are not distributed with the project archive. Obtain the dataset 
 
 ---
 
-## References & Acknowledgments
+## References andacknowledgments
 
 This work uses the WESAD dataset introduced by:
 
