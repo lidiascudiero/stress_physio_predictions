@@ -1,4 +1,4 @@
- # Wearable Stress an afffect: from physiological signals to interpretable predictions
+ # Wearable stress and afffect: from physiological signals to interpretable predictions
 
 This repository implements a Machine Learning workflow for **subject-independent classification of laboratory stress and affect**, using wrist and chest recordings from the WESAD dataset.
 
