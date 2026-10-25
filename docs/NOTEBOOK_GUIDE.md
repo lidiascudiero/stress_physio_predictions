@@ -16,4 +16,4 @@
 | `10_training_block_permutation_loso.ipynb` | Separate conditional block-randomization diagnostic |
 | `11_benchmark_and_model_comparison.ipynb` | Metric audit, visual benchmark, and explicit ranking rules |
 
-The two notebook-10 files have different purposes; use their full filenames.
+
