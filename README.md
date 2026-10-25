@@ -1,4 +1,4 @@
- Wearable Stress & Affect: From Physiological Signals to Interpretable Predictions
+ # Wearable Stress an afffect: from physiological signals to interpretable predictions
 
 This repository implements a Machine Learning workflow for **subject-independent classification of laboratory stress and affect**, using wrist and chest recordings from the WESAD dataset.
 
@@ -8,26 +8,26 @@ This is an independent analysis of WESAD, not an official implementation or an e
 
 ---
 
-## The “Neurocognitive Integrity” Angle
+## The “Neurocognitive integrity”aAngle
 
-> **Author’s Note:** My background in **Cognitive Psychology and Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings—not direct measurements of neural activity**.
+> **Author’s Note:** My background in **Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings—not direct measurements of neural activity**.
 
 ---
 
 ## Project Workflow
 
-- **Signal Audit & Quality Control:** Loaded the extracted recordings, checked participant coverage, signal availability, missing values, and window-level quality. Added ACC cross-correlation as a diagnostic for possible temporal offsets, without automatically realigning recordings.
-- **Feature Engineering & Exploration:** Extracted cardiac, pulse, electrodermal, respiratory, temperature, movement, and muscle features. Explored distributions, condition differences, participant variability, outliers, and feature redundancy.
-- **Subject-Independent Benchmarking:** Compared majority classification, logistic regression, Random Forest, XGBoost, LightGBM, and MLP using LOSO evaluation and inner cross-validation grouped by participant.
-- **Multimodal Analysis:** Compared wrist, chest, early fusion, late fusion, and simulated missing-modality scenarios. Primary sensor comparisons used the same common valid windows.
-- **Robustness & Reliability:** Evaluated post-hoc correlation filtering, participant-level uncertainty summaries, calibration, and selective prediction. Reported both prediction performance and how often the system accepts a decision.
-- **Psychological Interpretation:** Analyzed self-report scores separately from training, including exploratory associations with physiological features and held-out model outputs.
-- **Explainability:** Implemented Monte Carlo Shapley attribution, feature-family and modality summaries, beeswarm and waterfall plots, PDP, and first-order ALE for saved LOSO models.
-- **Benchmark Dashboard:** Recomputed metrics from saved out-of-fold predictions, checked sample compatibility, identified duplicate runs, and generated comparative tables and figures.
+- **Signal Audit and quality control:** loaded the extracted recordings, checked participant coverage, signal availability, missing values, and window-level quality. Added ACC cross-correlation as a diagnostic for possible temporal offsets, without automatically realigning recordings.
+- **Feature Engineering and exploration:** extracted cardiac, pulse, electrodermal, respiratory, temperature, movement, and muscle features. Explored distributions, condition differences, participant variability, outliers, and feature redundancy.
+- **Subject-Independent benchmarking:** compared majority classification, logistic regression, Random Forest, XGBoost, LightGBM, and MLP using LOSO evaluation and inner cross-validation grouped by participant.
+- **Multimodal analysis:** compared wrist, chest, early fusion, late fusion, and simulated missing-modality scenarios. Primary sensor comparisons used the same common valid windows.
+- **Robustness and reliability:** evaluated post-hoc correlation filtering, participant-level uncertainty summaries, calibration, and selective prediction. Reported both prediction performance and how often the system accepts a decision.
+- **Psychological Interpretation:** analyzed self-report scores separately from training, including exploratory associations with physiological features and held-out model outputs.
+- **Explainability:** implemented Monte Carlo Shapley attribution, feature-family and modality summaries, beeswarm and waterfall plots, PDP, and first-order ALE for saved LOSO models.
+- **Benchmark Dashboard:** recomputed metrics from saved out-of-fold predictions, checked sample compatibility, identified duplicate runs, and generated comparative tables and figures.
 
 ---
 
-## Dataset & Prediction Tasks
+## Dataset and prediction tasks
 
 WESAD contains recordings from **15 participants** in a laboratory study, with chest- and wrist-worn sensors and accompanying self-reports. The recordings include cardiac/pulse activity, EDA, respiration, temperature, acceleration, and EMG. See the [original study](https://doi.org/10.1145/3242969.3242985) and [dataset documentation](https://doi.org/10.24432/C57K5T).
 
@@ -40,7 +40,7 @@ WESAD contains recordings from **15 participants** in a laboratory study, with c
 
 **Tasks are benchmarked separately.** A binary score cannot be ranked directly against a three- or four-class score. Experimental condition labels are not continuous measurements of perceived stress.
 
-## Evaluation Design
+## Evaluation design
 
 - **60-second windows with 50% overlap**, without crossing condition boundaries.
 - **Outer LOSO:** each participant is held out once for testing.
@@ -54,11 +54,11 @@ Bootstrap intervals and paired comparisons use participants as the resampling un
 
 ---
 
-## Results: Performance Without a Single “Winner” Narrative
+## Results
 
 The following values come from the saved OOF benchmark. Balanced accuracy and macro F1 are **equal-participant means**.
 
-### Original Primary Comparisons
+### Original primary comparisons
 
 | Configuration | Balanced accuracy | Macro F1 |
 |---|---:|---:|
@@ -67,7 +67,7 @@ The following values come from the saved OOF benchmark. Balanced accuracy and ma
 
 Wrist Random Forest achieved the highest observed mean among the original primary configurations, but its proximity to early-fusion logistic regression does not establish a decisive winner.
 
-### Exploratory Three-Class Candidates
+### Exploratory three-class candidates
 
 | Configuration | Balanced accuracy | Macro F1 |
 |---|---:|---:|
@@ -78,7 +78,7 @@ The reduced Random Forest used approximately **35 rather than 45 features** and 
 
 Late fusion exceeded the reduced Random Forest by approximately **0.96 percentage points**, with a conditional paired bootstrap interval of **−6.72 to +7.46 points**. The available comparison does not establish superiority between these candidates. Their relative position also depends on whether balanced accuracy or macro F1 is considered.
 
-### Secondary Binary Tasks
+### Secondary binary tasks
 
 | Task | Configuration | Balanced accuracy | Macro F1 |
 |---|---|---:|---:|
@@ -87,7 +87,7 @@ Late fusion exceeded the reduced Random Forest by approximately **0.96 percentag
 
 These results suggest that separating the laboratory stress condition is easier than distinguishing all three primary conditions. They do not demonstrate everyday stress detection or clinical validity.
 
-### Benchmark at a Glance
+### Benchmark at a glance
 
 The benchmark workflow generates:
 
@@ -102,7 +102,7 @@ The current benchmark audit validated **84 distinct configurations** and recogni
 
 ---
 
-## Explainability: Contributions, Not Causes
+## Explainability
 
 The all-experiment interpretation notebook explains **saved models on held-out participants**. It supports primary and secondary classifiers, advanced algorithms, fusion predictors, and saved reduced variants.
 
@@ -117,7 +117,7 @@ To avoid the SHAP–Numba compatibility issue encountered in the working environ
 
 Additivity does not establish convergence. Correlated inputs may distribute attribution across features, and hybrid samples may fall outside realistic physiological combinations. No contribution is interpreted as a causal effect of a physiological variable on stress.
 
-## Reliability & the Individual Participant
+## Reliability and the individual participant
 
 The uncertainty workflow separates model-fitting, calibration, and test participants. It reports fold-specific thresholds, accepted-window counts, class-specific acceptance, and performance before and after rejection.
 
@@ -125,7 +125,7 @@ This distinction matters: a participant with 100% accuracy on two accepted windo
 
 Calibration and conformal analyses remain exploratory. Neither high confidence nor empirical coverage establishes guaranteed reliability for a new individual.
 
-## Self-Reports: Connecting Predictions With Experience
+## self-Reports: Connecting predictions with experience
 
 Questionnaires remain **outside the classifier-training loop**. The workflow describes self-reports by condition and explores associations with physiological features and OOF model scores.
 
@@ -155,7 +155,7 @@ Missing items remain missing; composite scores requiring those items are not rep
 
 The two notebook-10 files have different purposes; use their full filenames.
 
-## Reproducibility & Statistical Boundaries
+## Reproducibility and statistical boundaries
 
 Configuration is stored in `configs/config.yaml`. The revised workflow records configuration and source-code SHA-256 fingerprints in `protocol_lock.json` and verifies them before using the frozen protocol. New source revisions must not be retroactively assigned to historical results.
 
