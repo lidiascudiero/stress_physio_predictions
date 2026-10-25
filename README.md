@@ -62,8 +62,8 @@ The following values come from the saved OOF benchmark. Balanced accuracy and ma
 
 | Configuration | Balanced accuracy | Macro F1 |
 |---|---:|---:|
-| Wrist — Random Forest | **68.29%** | **0.656** |
-| Early fusion — Logistic Regression | 68.21% | 0.636 |
+| Wrist Random Forest | **68.29%** | **0.656** |
+| Early fusion Logistic Regression | 68.21% | 0.636 |
 
 Wrist Random Forest achieved the highest observed mean among the original primary configurations, but its proximity to early-fusion logistic regression does not establish a decisive winner.
 
@@ -71,8 +71,8 @@ Wrist Random Forest achieved the highest observed mean among the original primar
 
 | Configuration | Balanced accuracy | Macro F1 |
 |---|---:|---:|
-| Late fusion — Logistic Regression | **73.32%** | 0.700 |
-| Early fusion — Random Forest, correlation filter 0.90 | **72.36%** | **0.704** |
+| Late fusion  Logistic Regression | **73.32%** | 0.700 |
+| Early fusion  Random Forest, correlation filter 0.90 | **72.36%** | **0.704** |
 
 The reduced Random Forest used approximately **35 rather than 45 features** and improved mean balanced accuracy by **4.92 percentage points** over its complete-feature counterpart. This is a post-hoc sensitivity result, not a replacement of the original primary analysis.
 
