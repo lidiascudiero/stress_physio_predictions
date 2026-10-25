@@ -82,8 +82,8 @@ Late fusion exceeded the reduced Random Forest by approximately **0.96 percentag
 
 | Task | Configuration | Balanced accuracy | Macro F1 |
 |---|---|---:|---:|
-| Stress vs. non-stress | Wrist — Logistic Regression | **90.33%** | 0.889 |
-| Baseline vs. stress | Wrist — Logistic Regression | **91.22%** | 0.904 |
+| Stress vs. non-stress | Wrist  Logistic Regression | **90.33%** | 0.889 |
+| Baseline vs. stress | Wrist  Logistic Regression | **91.22%** | 0.904 |
 
 These results suggest that separating the laboratory stress condition is easier than distinguishing all three primary conditions. They do not demonstrate everyday stress detection or clinical validity.
 
