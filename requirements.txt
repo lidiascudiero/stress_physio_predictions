@@ -1,0 +1,17 @@
+# Core versions used for local execution; full transitive lock not supplied.
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+PyYAML==6.0.3
+pyarrow>=18,<25
+neurokit2>=0.2.10,<0.3
+heartpy==1.2.7
+tqdm==4.67.1
+pytest>=8,<10
+nbformat==5.10.4
+nbclient>=0.10,<0.11
+ipykernel>=6.29,<8
+psutil>=6,<8

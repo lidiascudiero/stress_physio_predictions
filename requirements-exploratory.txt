@@ -1,0 +1,4 @@
+# Install after requirements.txt; CPU implementations, no GPU required.
+xgboost-cpu>=3,<4
+lightgbm>=4.5,<5
+# MLP, fusion, conformal and questionnaires use the base environment.
