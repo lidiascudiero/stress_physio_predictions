@@ -87,51 +87,133 @@ Late fusion exceeded the reduced Random Forest by approximately **0.96 percentag
 
 These results suggest that separating the laboratory stress condition is easier than distinguishing all three primary conditions. They do not demonstrate everyday stress detection or clinical validity.
 
-### Benchmark at a glance
+### Benchmark at a Glance
 
-The benchmark workflow generates:
+The benchmark audit validated **84 distinct configurations** and recognized
+**15 identical OOF reruns** as duplicates rather than independent evidence.
 
-- Side-by-side **precision, recall, and F1** comparisons.
-- Subject-level performance and per-class recall heatmaps.
-- Balanced-accuracy rankings with conditional intervals.
-- Full-versus-reduced comparisons at **0.95, 0.90, and 0.80**.
-- Performance versus feature-count plots.
-- Paired comparisons restricted to matching tasks, participants, and windows.
+| Comparison | Key finding |
+|---|---|
+| Original primary models | Wrist Random Forest achieved **68.29% balanced accuracy** and **0.656 macro F1**. |
+| Exploratory three-class models | Late fusion achieved **73.32% balanced accuracy** and **0.700 macro F1**. |
+| Feature-redundancy sensitivity | Early-fusion Random Forest with a **0.90 correlation filter** reached **72.36% balanced accuracy** and **0.704 macro F1**, retaining approximately **35 rather than 45 features**. |
+| Secondary stress/non-stress task | Wrist logistic regression reached **90.33% balanced accuracy** and **0.889 macro F1**. |
 
-The current benchmark audit validated **84 distinct configurations** and recognized **15 identical OOF reruns** as duplicates rather than independent evidence. The complete tables and decision rules are available in `artifacts/revision_v2/benchmark/` after execution.
+Late fusion exceeded the reduced early-fusion Random Forest by only
+**0.96 percentage points**, with a conditional paired bootstrap interval
+of **−6.72 to +7.46 points**. The comparison does not establish a definitive
+winner.
+
+The workflow provides side-by-side precision, recall and F1 charts,
+participant-level heatmaps, class-specific results, sensitivity curves,
+and paired comparisons restricted to matching tasks and windows.
+
+Complete tables and decision rules are available in
+`artifacts/revision_v2/benchmark/` after execution.
 
 ---
 
-## Explainability
+## Explainability: What Do the Models Use?
 
-The all-experiment interpretation notebook explains **saved models on held-out participants**. It supports primary and secondary classifiers, advanced algorithms, fusion predictors, and saved reduced variants.
+The interpretation workflow completed **1,485 fold analyses across
+99 saved experiment entries**, including complete-model reruns.
+These are not 99 independent model designs.
 
-To avoid the SHAP–Numba compatibility issue encountered in the working environment, the implementation uses **Monte Carlo estimates of Shapley values through antithetic feature-order sampling**, without importing SHAP or Numba. It is **not exact TreeSHAP**.
+Explanations are computed on held-out participants using **Monte Carlo
+Shapley estimates with antithetic feature-order sampling** and training-only
+reference data. The implementation does not require SHAP or Numba and
+is **not exact TreeSHAP**.
 
-- **Common output scale:** class probabilities across algorithms in the all-experiment notebook.
-- **Training-only references:** background samples exclude the test participant.
-- **Validation:** loaded models must reproduce their saved OOF probabilities.
-- **Approximation diagnostics:** additivity checks and Monte Carlo standard errors.
-- **Interpretation levels:** individual features, physiological families, and wrist/chest contributions within fused models.
-- **Visual outputs:** global importance, beeswarm, individual waterfall, PDP, and first-order ALE plots.
+Selected findings include:
 
-Additivity does not establish convergence. Correlated inputs may distribute attribution across features, and hybrid samples may fall outside realistic physiological combinations. No contribution is interpreted as a causal effect of a physiological variable on stress.
+- **Wrist binary classifiers:** pulse rate and PRV SDNN were the leading
+  individual features, with the BVP/PRV family showing the largest grouped
+  contribution.
+- **Original wrist Random Forest:** temperature mean had the largest
+  mean absolute contribution, followed by EDA variability and movement.
+- **Reduced early-fusion Random Forest:** chest activity level and ECG
+  beat count were prominent, alongside wrist movement and EDA.
+- **Four-class early-fusion Random Forest:** respiratory rate was the
+  highest-ranked individual feature.
+- **Late fusion:** grouped chest and wrist contributions were similar
+  in magnitude, although this does not establish equal sensor utility.
 
-## Reliability and the individual participant
+Beeswarm, waterfall, PDP and first-order ALE plots support both global
+and individual inspection. Rank stability varies by configuration:
+the original wrist Random Forest had mean pairwise rank Spearman
+**0.734**, compared with **0.660** for late fusion.
 
-The uncertainty workflow separates model-fitting, calibration, and test participants. It reports fold-specific thresholds, accepted-window counts, class-specific acceptance, and performance before and after rejection.
+All algorithms are explained on the class-probability scale, but different
+tasks and reference distributions remain distinct attribution problems.
+Monte Carlo standard errors are saved; additivity checks alone do not
+establish convergence.
 
-This distinction matters: a participant with 100% accuracy on two accepted windows does not have a reliable all-condition classifier. Some participants lose entire classes after rejection, while others retain confidently incorrect predictions.
+These findings describe **model reliance, not physiological causes or
+validated biomarkers**. Correlated inputs and task-related movement
+can complicate interpretation.
 
-Calibration and conformal analyses remain exploratory. Neither high confidence nor empirical coverage establishes guaranteed reliability for a new individual.
+## Reliability: Better Scores Can Hide Limited Availability
 
-## Self-reports: connecting predictions with experience
+The reliability procedure uses **11 fitting participants, 3 calibration
+participants, and 1 test participant** per LOSO fold.
 
-Questionnaires remain **outside the classifier-training loop**. The workflow describes self-reports by condition and explores associations with physiological features and OOF model scores.
+It accepted **75.42% of windows overall**, but participant-level acceptance
+ranged from **2.94% to 100%**. Class-specific acceptance was:
 
-Model outputs are aggregated to participant–condition level before association analysis. Spearman correlations, multiple-comparison correction, paired baseline–TSST comparisons, and participant-sensitivity checks are available in the dedicated notebook.
+- **Stress:** 82.4%.
+- **Baseline:** 74.2%.
+- **Amusement:** 66.9%.
 
-Missing items remain missing; composite scores requiring those items are not replaced by incomplete sums. Questionnaire scoring and item mappings must be checked against the original documentation before psychological interpretation. Associations are exploratory and do not establish ecological or clinical validation.
+Among the **12 participants retaining all three classes after rejection**,
+mean balanced accuracy increased only from **63.2% to 64.7%**.
+This selected-subset result is not an improvement estimate for all
+15 participants.
+
+For S17, 100% accepted-window accuracy was based on only **two stress
+windows**. Other participants retained confidently incorrect predictions.
+The findings highlight the trade-off between accuracy, class coverage,
+and availability of a decision.
+
+In the separate exploratory conformal analysis, overall prediction-set
+coverage was **89.75%**, but amusement coverage was only **63.13%**.
+Overall coverage therefore concealed substantial class differences.
+
+Calibration, abstention and conformal prediction remain exploratory;
+none establishes guaranteed reliability for a new individual.
+
+## Self-Reports: Connecting Predictions With Experience
+
+Questionnaire processing covers **15 participants and 75 episodes**.
+Self-reports remain **outside classifier training**.
+
+Reported experience increased during the stress task:
+
+| Measure | Baseline median | TSST median | Holm-adjusted paired-test p |
+|---|---:|---:|---:|
+| Stressed item | 2 | 4 | 0.0013 |
+| STAI-6 keyed sum | 10 | 19 | 0.0013 |
+
+However, a condition difference did not translate into clear evidence
+that the classifier measured individual stress intensity.
+
+During TSST, mean classifier stress probability had Spearman correlations
+of **0.320 with the stressed item** and **0.221 with STAI**.
+Both bootstrap intervals included zero, and none of the six model–self-report
+associations remained significant after Holm correction.
+
+Separately, physiological-feature analyses found descriptive TSST
+correlations of **0.677 for heart rate** and **0.527 for pulse rate**
+with the stressed item. These feature correlations did not include
+inferential tests and should not be presented as statistically established
+associations.
+
+The distinction is central: **classifying an experimental condition,
+describing physiological variation, and measuring subjective intensity
+are different objectives**.
+
+Missing questionnaire items are not imputed. Item mappings and scoring
+must be checked against the original documentation. These exploratory
+analyses do not establish causality, ecological validity, or clinical validity.
 
 ---
 
