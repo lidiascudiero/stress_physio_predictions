@@ -113,7 +113,7 @@ Complete tables and decision rules are available in
 
 ---
 
-## Explainability: What Do the Models Use?
+## Explainability: what do the models use?
 
 The interpretation workflow completed **1,485 fold analyses across
 99 saved experiment entries**, including complete-model reruns.
@@ -152,7 +152,7 @@ These findings describe **model reliance, not physiological causes or
 validated biomarkers**. Correlated inputs and task-related movement
 can complicate interpretation.
 
-## Reliability: Better Scores Can Hide Limited Availability
+## Reliability: better scores can hide limited availability
 
 The reliability procedure uses **11 fitting participants, 3 calibration
 participants, and 1 test participant** per LOSO fold.
@@ -181,7 +181,7 @@ Overall coverage therefore concealed substantial class differences.
 Calibration, abstention and conformal prediction remain exploratory;
 none establishes guaranteed reliability for a new individual.
 
-## Self-Reports: Connecting Predictions With Experience
+## Self-reports: connecting predictions with experience
 
 Questionnaire processing covers **15 participants and 75 episodes**.
 Self-reports remain **outside classifier training**.
