@@ -1,0 +1,53 @@
+dataset:
+  name: WESAD
+  expected_subjects: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17]
+  raw_dir: data/raw
+  trusted_pickle: false
+  source_url: null  # Set to official archive after checking terms; UCI links externally.
+  sha256: null     # Record the downloaded archive hash in the run provenance.
+  labels: {1: baseline, 2: stress, 3: amusement, 4: meditation}
+  ignored_labels: [0, 5, 6, 7]
+features:
+  window_seconds: 60
+  overlap: 0.5
+  min_valid_ratio: 0.8
+  min_valid_beats: 30
+  min_beat_intervals: 20
+  min_plausible_interval_ratio: 0.9
+  include_acc: true
+qc:
+  # Engineering heuristics, not validated clinical thresholds. Freeze before modeling.
+  flat_std: 0.000001
+  temp_range_c: [15, 45]
+  eda_range_us: [0, 100]
+  acc_movement_warning_g: 0.5  # Flag only; not an automatic exclusion.
+  max_duration_error_seconds: 1.0
+splits:
+  inner_folds: 4
+  seed: 42
+  bootstrap_repetitions: 2000
+models:
+  logistic_c: [0.1, 1.0, 10.0]
+  rf_depth: [5, null]
+  rf_trees: 200
+uncertainty:
+  calibration_subjects: 3
+  ensemble_members: 5
+  target_calibration_error: 0.2
+  min_accepted_calibration: 20
+  conformal_exploratory: false
+  alpha: 0.1
+output:
+  root: artifacts/revision_v2
+  feature_format: parquet
+
+exploratory:
+  enabled: true  # Executed only after the nine confirmatory runs.
+  advanced_models: [xgboost, lightgbm, mlp]
+  boosting_trees: 200
+  xgb_depth: [3, 5]
+  lgbm_leaves: [7, 15]
+  mlp_alpha: [0.001, 0.01]
+  mlp_max_iter: 500
+  four_class_min_subjects: 10
+  four_class_min_windows_per_subject_class: 3
