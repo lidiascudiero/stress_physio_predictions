@@ -12,7 +12,7 @@
 | `07` | Report, limitations, and self-report processing |
 | `08` | Model/self-report associations |
 | `09` / `09b` | Correlation sensitivity, tree importance, and saved reduced models |
-| `10 / `10b`  | Focused interpretation of six headline configurations across 90 LOSO folds, including Shapley summaries, beeswarm, waterfall, PDP and ALE plots |
+| `10` / `10b` |Focused interpretation of six headline configurations across 90 LOSO folds, including Shapley summaries, beeswarm, waterfall, PDP and ALE plots |
 | `10_all_loso_experiments_interpretability_no_numba.ipynb` | Optional comprehensive interpretation of all supported saved LOSO experiments |
 | `10_training_block_permutation_loso.ipynb` | Conditional training-only block-randomization diagnostic |
 | `11` | Metric audit, visual benchmark, and explicit ranking rules |
