@@ -8,22 +8,22 @@ This is an independent analysis of WESAD, not an official implementation or an e
 
 ---
 
-## The “Neurocognitive integrity”aAngle
+## The “Neurocognitive integrity” angle
 
-> **Author’s Note:** My background in **Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings—not direct measurements of neural activity**.
+> **Author’s note:** My background in **Cognitive Neuroscience** shaped how I approached this project. I treated physiological signals, experimental conditions, and subjective experience as related but distinct sources of information. A participant exposed to a stress task is not automatically experiencing a uniform level of stress, and a confident algorithm is not automatically a reliable one. This perspective motivated participant-independent evaluation, separate self-report analyses, and an explicit examination of individual differences. My aim was to connect computational predictions with psychological interpretation while keeping the limits of each measurement visible. These are **peripheral physiological recordings—not direct measurements of neural activity**.
 
 ---
 
-## Project Workflow
+## Project workflow
 
-- **Signal Audit and quality control:** loaded the extracted recordings, checked participant coverage, signal availability, missing values, and window-level quality. Added ACC cross-correlation as a diagnostic for possible temporal offsets, without automatically realigning recordings.
-- **Feature Engineering and exploration:** extracted cardiac, pulse, electrodermal, respiratory, temperature, movement, and muscle features. Explored distributions, condition differences, participant variability, outliers, and feature redundancy.
-- **Subject-Independent benchmarking:** compared majority classification, logistic regression, Random Forest, XGBoost, LightGBM, and MLP using LOSO evaluation and inner cross-validation grouped by participant.
+- **Signal audit and quality control:** loaded the extracted recordings, checked participant coverage, signal availability, missing values, and window-level quality. Added ACC cross-correlation as a diagnostic for possible temporal offsets, without automatically realigning recordings.
+- **Feature engineering and exploration:** extracted cardiac, pulse, electrodermal, respiratory, temperature, movement, and muscle features. Explored distributions, condition differences, participant variability, outliers, and feature redundancy.
+- **Subject-independent benchmarking:** compared majority classification, logistic regression, Random Forest, XGBoost, LightGBM, and MLP using LOSO evaluation and inner cross-validation grouped by participant.
 - **Multimodal analysis:** compared wrist, chest, early fusion, late fusion, and simulated missing-modality scenarios. Primary sensor comparisons used the same common valid windows.
 - **Robustness and reliability:** evaluated post-hoc correlation filtering, participant-level uncertainty summaries, calibration, and selective prediction. Reported both prediction performance and how often the system accepts a decision.
-- **Psychological Interpretation:** analyzed self-report scores separately from training, including exploratory associations with physiological features and held-out model outputs.
+- **Psychological interpretation:** analyzed self-report scores separately from training, including exploratory associations with physiological features and held-out model outputs.
 - **Explainability:** implemented Monte Carlo Shapley attribution, feature-family and modality summaries, beeswarm and waterfall plots, PDP, and first-order ALE for saved LOSO models.
-- **Benchmark Dashboard:** recomputed metrics from saved out-of-fold predictions, checked sample compatibility, identified duplicate runs, and generated comparative tables and figures.
+- **Benchmark dashboard:** recomputed metrics from saved out-of-fold predictions, checked sample compatibility, identified duplicate runs, and generated comparative tables and figures.
 
 ---
 
